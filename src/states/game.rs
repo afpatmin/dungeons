@@ -27,11 +27,10 @@ fn init_player(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
     let mut transform = Transform::default();
     transform.set_translation_xyz(CAMERA_WIDTH * 0.5, CAMERA_HEIGHT * 0.5, 0.0);
     let sprite_render = SpriteRender {
-      sprite_sheet: sprite_sheet.clone(),
-      sprite_number: 0,
+        sprite_sheet: sprite_sheet.clone(),
+        sprite_number: 0,
     };
 
-    world.register::<Player>();
     world
         .create_entity()
         .with(Player::new())
