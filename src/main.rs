@@ -40,7 +40,11 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(rendering_bundle)?
         .with_bundle(TransformBundle::new())?
         .with_bundle(input_bundle)?
-        .with(systems::ShipControlSystem, "ship_control_system", &["input_system"]);
+        .with(
+            systems::ShipControlSystem,
+            "ship_control_system",
+            &["input_system"],
+        );
 
     let assets_dir = app_root.join("assets");
     let mut game = Application::new(assets_dir, Game, game_data)?;

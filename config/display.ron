@@ -1,4 +1,4 @@
 (
   title: "Dungeons",
-  dimensions: Some((1280, 960))
+  dimensions: Some((800, 800))
 )
