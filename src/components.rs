@@ -1,3 +1,3 @@
-mod player;
+mod ship_control;
 
-pub use player::Player;
+pub use ship_control::ShipControl;

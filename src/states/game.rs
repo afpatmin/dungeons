@@ -8,7 +8,7 @@ use amethyst::{
     renderer::{Camera, ImageFormat, SpriteRender, SpriteSheet, SpriteSheetFormat, Texture},
 };
 
-use crate::components::Player;
+use crate::components::ShipControl;
 
 pub struct Game;
 
@@ -19,11 +19,11 @@ impl SimpleState for Game {
         let world = data.world;
         init_camera(world);
         let sprite_sheet = load_sprite_sheet(world);
-        init_player(world, sprite_sheet);
+        init_ship(world, sprite_sheet);
     }
 }
 
-fn init_player(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
+fn init_ship(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
     let mut transform = Transform::default();
     transform.set_translation_xyz(CAMERA_WIDTH * 0.5, CAMERA_HEIGHT * 0.5, 0.0);
     let sprite_render = SpriteRender {
@@ -33,7 +33,7 @@ fn init_player(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
 
     world
         .create_entity()
-        .with(Player::new())
+        .with(ShipControl::new())
         .with(sprite_render.clone())
         .with(transform)
         .build();

@@ -1,3 +1,3 @@
-mod move_system;
+mod ship_control_system;
 
-pub use move_system::MoveSystem;
+pub use ship_control_system::ShipControlSystem;
