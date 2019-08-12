@@ -5,7 +5,7 @@ pub struct ParticleGenerator {
     pub interval: f32,
     /// Spawn interval in seconds
     pub timer: f32,
-    pub active: bool
+    pub active: bool,
 }
 
 impl Component for ParticleGenerator {

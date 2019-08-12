@@ -1,5 +1,5 @@
-pub const CAMERA_WIDTH: f32 = 500.0;
-pub const CAMERA_HEIGHT: f32 = 500.0;
+pub const CAMERA_WIDTH: f32 = 250.0;
+pub const CAMERA_HEIGHT: f32 = 250.0;
 
 use amethyst::{
     assets::{AssetStorage, Handle, Loader},
@@ -40,7 +40,7 @@ fn init_ship(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
 
     world
         .create_entity()
-        .with(ParticleGenerator::new(vec![0], 0.05))
+        .with(ParticleGenerator::new(vec![0], 0.1))
         .with(ShipControl::new())
         .with(sprite_render.clone())
         .with(transform)

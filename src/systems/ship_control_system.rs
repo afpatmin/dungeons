@@ -1,4 +1,4 @@
-use crate::components::{ShipControl, ParticleGenerator};
+use crate::components::{ParticleGenerator, ShipControl};
 use amethyst::{
     core::{math, timing::Time, Transform},
     ecs::{Join, Read, System, WriteStorage},
@@ -16,8 +16,17 @@ impl<'s> System<'s> for ShipControlSystem {
         Read<'s, Time>,
     );
 
-    fn run(&mut self, (mut transforms, mut ship_controls, mut particle_generators, input, time): Self::SystemData) {
-        for (ship_control, transform, particle_generator) in (&mut ship_controls, &mut transforms, &mut particle_generators).join() {
+    fn run(
+        &mut self,
+        (mut transforms, mut ship_controls, mut particle_generators, input, time): Self::SystemData,
+    ) {
+        for (ship_control, transform, particle_generator) in (
+            &mut ship_controls,
+            &mut transforms,
+            &mut particle_generators,
+        )
+            .join()
+        {
             let dt = time.delta_seconds();
             let acceleration = input.axis_value("acceleration");
             if let Some(thrust) = acceleration {
@@ -33,7 +42,7 @@ impl<'s> System<'s> for ShipControlSystem {
                     }
                     particle_generator.active = true;
                 } else {
-                  particle_generator.active = false;
+                    particle_generator.active = false;
                 }
             }
             let turn = input.axis_value("turn");
