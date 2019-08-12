@@ -13,14 +13,12 @@ use amethyst::{
 };
 
 mod components;
+mod resources;
 mod states;
 mod systems;
 
-use states::Game;
-use systems::ShipControlSystem;
-
 fn main() -> amethyst::Result<()> {
-    amethyst::start_logger(Default::default());
+    //amethyst::start_logger(Default::default());
 
     let app_root = application_root_dir()?;
     let display_config_path = app_root.join("config").join("display.ron");
@@ -40,6 +38,7 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(rendering_bundle)?
         .with_bundle(TransformBundle::new())?
         .with_bundle(input_bundle)?
+        .with(systems::ParticleSystem, "particle_system", &[])
         .with(
             systems::ShipControlSystem,
             "ship_control_system",
@@ -47,7 +46,7 @@ fn main() -> amethyst::Result<()> {
         );
 
     let assets_dir = app_root.join("assets");
-    let mut game = Application::new(assets_dir, Game, game_data)?;
+    let mut game = Application::new(assets_dir, states::Game, game_data)?;
     game.run();
 
     Ok(())

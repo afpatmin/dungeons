@@ -1,0 +1,6 @@
+{
+  "rust-client.updateOnStartup": true,
+  "rust.all_features": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rust-lang.rust"
+}

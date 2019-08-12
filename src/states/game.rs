@@ -1,5 +1,5 @@
-pub const CAMERA_WIDTH: f32 = 100.0;
-pub const CAMERA_HEIGHT: f32 = 100.0;
+pub const CAMERA_WIDTH: f32 = 500.0;
+pub const CAMERA_HEIGHT: f32 = 500.0;
 
 use amethyst::{
     assets::{AssetStorage, Handle, Loader},
@@ -8,7 +8,9 @@ use amethyst::{
     renderer::{Camera, ImageFormat, SpriteRender, SpriteSheet, SpriteSheetFormat, Texture},
 };
 
-use crate::components::ShipControl;
+use crate::components::{ParticleGenerator, ShipControl};
+
+use crate::resources::GameResource;
 
 pub struct Game;
 
@@ -17,9 +19,14 @@ impl Game {}
 impl SimpleState for Game {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         let world = data.world;
-        init_camera(world);
         let sprite_sheet = load_sprite_sheet(world);
-        init_ship(world, sprite_sheet);
+        let game_resource = GameResource {
+            sprite_sheet: Some(sprite_sheet.clone()),
+        };
+        world.add_resource(game_resource);
+
+        init_camera(world);
+        init_ship(world, sprite_sheet.clone());
     }
 }
 
@@ -33,6 +40,7 @@ fn init_ship(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
 
     world
         .create_entity()
+        .with(ParticleGenerator::new(vec![0], 0.05))
         .with(ShipControl::new())
         .with(sprite_render.clone())
         .with(transform)

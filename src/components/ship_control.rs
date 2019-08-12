@@ -1,4 +1,7 @@
-use amethyst::{core::math, ecs::prelude::{Component, DenseVecStorage}};
+use amethyst::{
+    core::math,
+    ecs::prelude::{Component, DenseVecStorage},
+};
 
 pub struct ShipControl {
     pub velocity: math::Vector3<f32>,
