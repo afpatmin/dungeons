@@ -54,10 +54,10 @@ impl<'s> System<'s> for ParticleSystem {
                             .build_entity()
                             .with(transform.clone(), &mut transforms)
                             .with(sprite_render, &mut sprite_renders)
-                            .with(Lifetime::new(2.5), &mut lifetimes)
-                            .with(Fade::new(1.0, 0.0, 1.5), &mut fades)
+                            //.with(Lifetime::new(2.5), &mut lifetimes)
+                            //.with(Fade::new(1.0, 0.0, 1.5), &mut fades)
                             .with(Transparent, &mut transparents)
-                            .with(Tint(Srgba::new(1.0, 1.0, 1.0, 1.0)), &mut tints)
+                            .with(Tint(Srgba::new(1.0, 0.0, 0.4, 1.0)), &mut tints)
                             .build();
                     }
                 }
