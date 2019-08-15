@@ -1,7 +1,7 @@
 #![enable(implicit_some)]
 (
-    texture_width: 100,
-    texture_height: 200,
+    texture_width: 1024,
+    texture_height: 2048,
     sprites: [
         (
             x: 4,

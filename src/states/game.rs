@@ -1,5 +1,5 @@
-pub const CAMERA_WIDTH: f32 = 250.0;
-pub const CAMERA_HEIGHT: f32 = 250.0;
+pub const CAMERA_WIDTH: f32 = 2500.0;
+pub const CAMERA_HEIGHT: f32 = 2500.0;
 
 use amethyst::{
     assets::{AssetStorage, Handle, Loader},
@@ -40,7 +40,7 @@ fn init_ship(world: &mut World, sprite_sheet: Handle<SpriteSheet>) {
 
     world
         .create_entity()
-        .with(ParticleGenerator::new(vec![0], 0.1))
+        .with(ParticleGenerator::new(vec![0], 0.4))
         .with(ShipControl::new())
         .with(sprite_render.clone())
         .with(transform)
@@ -63,9 +63,11 @@ fn load_sprite_sheet(world: &mut World) -> Handle<SpriteSheet> {
     let texture_handle = {
         let loader = world.read_resource::<Loader>();
         let texture_storage = world.read_resource::<AssetStorage<Texture>>();
+        let mut image_format = ImageFormat::default();
+        //image_format.0.premultiply_alpha = true;
         loader.load(
             "textures/pong_spritesheet.png",
-            ImageFormat::default(),
+            image_format,
             (),
             &texture_storage,
         )

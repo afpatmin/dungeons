@@ -38,6 +38,7 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(rendering_bundle)?
         .with_bundle(TransformBundle::new())?
         .with_bundle(input_bundle)?
+        .with(systems::FadeSystem, "fade_system", &[])
         .with(systems::LifetimeSystem, "lifetime_system", &[])
         .with(systems::ParticleSystem, "particle_system", &[])
         .with(

@@ -1,8 +1,8 @@
-use crate::components::{Lifetime, ParticleGenerator};
+use crate::components::{Fade, Lifetime, ParticleGenerator};
 use amethyst::{
     core::{timing::Time, Transform},
     ecs::{Entities, Join, Read, System, WriteStorage},
-    renderer::SpriteRender,
+    renderer::{palette::Srgba, resources::Tint, SpriteRender, Transparent},
 };
 
 use crate::resources::GameResource;
@@ -16,6 +16,9 @@ impl<'s> System<'s> for ParticleSystem {
         WriteStorage<'s, ParticleGenerator>,
         WriteStorage<'s, SpriteRender>,
         WriteStorage<'s, Lifetime>,
+        WriteStorage<'s, Fade>,
+        WriteStorage<'s, Tint>,
+        WriteStorage<'s, Transparent>,
         Read<'s, Time>,
         Entities<'s>,
     );
@@ -28,6 +31,9 @@ impl<'s> System<'s> for ParticleSystem {
             mut particle_generators,
             mut sprite_renders,
             mut lifetimes,
+            mut fades,
+            mut tints,
+            mut transparents,
             time,
             entities,
         ): Self::SystemData,
@@ -48,7 +54,10 @@ impl<'s> System<'s> for ParticleSystem {
                             .build_entity()
                             .with(transform.clone(), &mut transforms)
                             .with(sprite_render, &mut sprite_renders)
-                            .with(Lifetime::new(0.5), &mut lifetimes)
+                            .with(Lifetime::new(2.5), &mut lifetimes)
+                            .with(Fade::new(1.0, 0.0, 1.5), &mut fades)
+                            .with(Transparent, &mut transparents)
+                            .with(Tint(Srgba::new(1.0, 1.0, 1.0, 1.0)), &mut tints)
                             .build();
                     }
                 }
