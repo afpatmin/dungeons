@@ -19,8 +19,8 @@ impl ShipControl {
     pub fn new() -> ShipControl {
         ShipControl {
             velocity: math::Vector3::new(0.0, 0.0, 0.0),
-            acceleration: 30.0,
-            max_speed: 50.0,
+            acceleration: 70.0,
+            max_speed: 200.0,
             drag: 0.997,
             turn_speed: 3.14,
         }

@@ -25,7 +25,7 @@ fn main() -> amethyst::Result<()> {
     let rendering_bundle = RenderingBundle::<DefaultBackend>::new()
         // The RenderToWindow plugin provides all the scaffolding for opening a window and drawing on it
         .with_plugin(
-            RenderToWindow::from_config_path(display_config_path).with_clear([1.0, 1.0, 1.0, 1.0]),
+            RenderToWindow::from_config_path(display_config_path).with_clear([0.0, 0.0, 0.0, 1.0]),
         )
         // RenderFlat2D plugin is used to render entities with a `SpriteRender` component.
         .with_plugin(RenderFlat2D::default());
